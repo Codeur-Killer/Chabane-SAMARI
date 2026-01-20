@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portfolio Branding - Découvrez mes projets de branding et identité visuelle">
+    <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.svg">
+    <title>Branding - Chabane SAMARI | SAMCHA DESIGNER</title>
+    <!-- Bootstrap min css -->
+    <link rel="stylesheet" href="assets/css/vendor/fontawesome.css">
+    <link rel="stylesheet" href="assets/css/plugins/swiper.css">
+    <link rel="stylesheet" href="assets/css/plugins/odometer.css">
+    <link rel="stylesheet" href="assets/css/vendor/animate.min.css">
+    <link rel="stylesheet" href="assets/css/vendor/bootstrap.min.css">
+    <!-- custom css -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        .branding-project-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .branding-project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+        
+        .branding-project-card .project-thumbnail {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        
+        .branding-project-card:hover .project-thumbnail {
+            transform: scale(1.05);
+        }
+        
+        .branding-project-card .project-info {
+            padding: 20px;
+            background: rgba(255,255,255,0.95);
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+        }
+        
+        .branding-project-card .project-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        
+        .branding-project-card .project-description {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+        
+        .branding-project-card .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        
+        .branding-project-card .tag {
+            background: #667eea;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+        
+        .project-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.95);
+            z-index: 9999;
+            overflow: hidden;
+        }
+        
+        .project-modal.active {
+            display: flex !important;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 40px;
+            color: white;
+            font-size: 40px;
+            cursor: pointer;
+            z-index: 10000;
+            transition: color 0.3s ease;
+        }
+        
+        .modal-close:hover {
+            color: #667eea;
+        }
+        
+        .project-swiper {
+            width: 90%;
+            max-width: 1200px;
+            height: 80vh;
+        }
+        
+        .project-swiper .swiper-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        
+        .swiper-button-next,
+        .swiper-button-prev {
+            color: white;
+            background: rgba(102, 126, 234, 0.8);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .swiper-button-next:hover,
+        .swiper-button-prev:hover {
+            background: rgba(102, 126, 234, 1);
+        }
+        
+        .swiper-pagination-bullet-active {
+            background: #667eea;
+        }
+        
+        .project-info-modal {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255,255,255,0.95);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            max-width: 600px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .section-head {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-sub-title {
+            margin-bottom: 20px;
+        }
+        
+        .subtitle {
+            color: #667eea;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        
+        .description {
+            color: #666;
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .breadcrumb-area {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 120px 0;
+            position: relative;
+        }
+        
+        .breadcrumb-inner h1 {
+            color: white;
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        
+        .breadcrumb-list {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .breadcrumb-list li {
+            color: rgba(255,255,255,0.8);
+        }
+        
+        .breadcrumb-list a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .breadcrumb-list a:hover {
+            color: rgba(255,255,255,0.8);
+        }
+        
+        .breadcrumb-item.active {
+            color: white;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body class="branding inner">
+
+
+    <!-- Branding Projects Section -->
+    <section class="branding-projects-area tmp-section-gap">
+        <div class="container">
+            <!-- Bouton de retour -->
+            <div class="row mb-4">
+                <div class="col-12">
+                    <a href="index.html" class="btn btn-outline-primary btn-icon-only">
+                        <i class="fas fa-arrow-left"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="section-head">
+                
+                <h2 class="title">BRANDING</h2>
+                
+            </div>
+            
+            <div class="row" id="projects-container">
+                <!-- Les projets seront chargés dynamiquement ici -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Modal -->
+    <div class="project-modal" id="projectModal">
+        <span class="modal-close" onclick="closeModal()">&times;</span>
+        <div class="swiper project-swiper">
+            <div class="swiper-wrapper" id="modal-swiper-wrapper">
+                <!-- Les images du projet seront insérées ici -->
+            </div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-pagination"></div>
+        </div>
+       
+    </div>
+
+    <!-- Footer -->
+    <footer class="tmp-footer-area tmp-section-gap">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="footer-top">
+                        <div class="logo">
+                            <a href="index.html">
+                                <img src="assets/images/logo/logo.png" alt="Logo">
+                            </a>
+                        </div>
+                       
+                    </div>
+                  
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="assets/js/vendor/bootstrap.min.js"></script>
+    <script src="assets/js/plugins/swiper.js"></script>
+    <script src="assets/js/vendor/jquery.js"></script>
+    <script>
+        // Données des projets de branding
+        const brandingProjects = [
+            {
+                id: 1,
+                title: "Projet 1",
+                description: "Description du projet 1",
+                thumbnail: "assets/images/img/bran1.jpeg",
+                images: [
+                    "assets/images/img/bran1.jpeg",
+                    "assets/images/img/bran2.jpeg",
+                    "assets/images/img/bran3.jpeg",
+                   
+                ],
+                tags: ["Branding"]
+            },
+            {
+                id: 2,
+                title: "Projet 1",
+                description: "Description du projet 1",
+                thumbnail: "assets/images/img/mot1.jpeg",
+                images: [
+                    "assets/images/img/mot1.jpeg",
+                    "assets/images/img/moto2.jpeg",
+                    
+                   
+                ],
+                tags: ["Branding"]
+            },
+            {
+                id: 3,
+                title: "Projet 1",
+                description: "Description du projet 1",
+                thumbnail: "assets/images/img/mot2.jpeg",
+                images: [
+                    "assets/images/img/mot2.jpeg",
+                    "assets/images/img/mot3.jpeg",
+                    
+                   
+                ],
+                tags: ["Branding"]
+            },
+             {
+                id: 3,
+                title: "Projet 1",
+                description: "Description du projet 1",
+                thumbnail: "assets/images/img/mot4.jpeg",
+                images: [
+                    "assets/images/img/mot4.jpeg",
+                    "assets/images/img/mot5.jpeg",
+                    
+                   
+                ],
+                tags: ["Branding"]
+            },
+            {
+                id: 4,
+                title: "Projet 1",
+                description: "Description du projet 1",
+                thumbnail: "assets/images/img/mot55.jpeg",
+                images: [
+                    "assets/images/img/mot55.jpeg",
+                    "assets/images/img/mot6.jpeg",
+                    "assets/images/img/mot7.jpeg",
+                    "assets/images/img/mot8.jpeg",
+                    
+                   
+                ],
+                tags: ["Branding"]
+            }
+         
+             
+        ];
+
+        let projectSwiper = null;
+
+        // Fonction pour afficher les projets
+        function displayProjects() {
+            const container = document.getElementById('projects-container');
+            container.innerHTML = '';
+
+            brandingProjects.forEach(project => {
+                const projectCard = document.createElement('div');
+                projectCard.className = 'col-lg-4 col-md-6';
+                projectCard.innerHTML = `
+                    <div class="branding-project-card" onclick="openProject(${project.id})" style="cursor: pointer;">
+                        <img src="${project.thumbnail}" alt="${project.title}" class="project-thumbnail">
+                    </div>
+                `;
+                container.appendChild(projectCard);
+            });
+        }
+
+        // Fonction pour ouvrir un projet
+        function openProject(projectId) {
+            console.log('Ouverture du projet:', projectId);
+            const project = brandingProjects.find(p => p.id === projectId);
+            if (!project) {
+                console.log('Projet non trouvé');
+                return;
+            }
+            
+            console.log('Projet trouvé:', project);
+
+            const modal = document.getElementById('projectModal');
+            const wrapper = document.getElementById('modal-swiper-wrapper');
+
+            // Ajouter les images au swiper
+            wrapper.innerHTML = project.images.map(image => `
+                <div class="swiper-slide">
+                    <img src="${image}" alt="${project.title}">
+                </div>
+            `).join('');
+
+            // Afficher le modal
+            modal.classList.add('active');
+            console.log('Modal affiché');
+
+            // Initialiser ou mettre à jour le swiper
+            if (projectSwiper) {
+                projectSwiper.destroy();
+            }
+            
+            setTimeout(() => {
+                projectSwiper = new Swiper('.project-swiper', {
+                    navigation: {
+                        nextEl: '.swiper-button-next',
+                        prevEl: '.swiper-button-prev',
+                    },
+                    pagination: {
+                        el: '.swiper-pagination',
+                        clickable: true,
+                    },
+                    loop: true,
+                    autoplay: {
+                        delay: 3000,
+                        disableOnInteraction: false,
+                    },
+                    effect: 'slide',
+                    keyboard: {
+                        enabled: true,
+                    }
+                });
+                console.log('Swiper initialisé avec', project.images.length, 'images');
+            }, 200);
+        }
+
+        // Fonction pour fermer le modal
+        function closeModal() {
+            const modal = document.getElementById('projectModal');
+            modal.classList.remove('active');
+            
+            if (projectSwiper) {
+                projectSwiper.destroy();
+                projectSwiper = null;
+            }
+        }
+
+        // Fermer le modal en cliquant en dehors
+        document.getElementById('projectModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+
+        // Fermer avec la touche Échap
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+
+        // Initialiser au chargement de la page
+        document.addEventListener('DOMContentLoaded', function() {
+            displayProjects();
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Portfolio Futuriste - Samari Chabane</title>
+
+  <!-- CSS principal -->
+  <link rel="stylesheet" href="css/style.css" />
+
+  <!-- AOS (animations) -->
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+
+  <!-- Font Awesome -->
+  <script src="https://kit.fontawesome.com/47923bc3f1.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+  <!-- NAV / HEADER (fixé) -->
+  <nav id="main-nav">
+    <div class="nav-inner container">
+      <img src="assets/images/logos/logo3.png" alt="Logo" class="logo" />
+
+      <ul id="sidemenu">
+        <li><a href="#header">Accueil</a></li>
+        <li><a href="#about">À Propos</a></li>
+        <li><a href="#skills">Compétences</a></li>
+        <li><a href="#oeuvres">Œuvres</a></li>
+        <li><a href="#collaborateurs">COLLABORATEUR</a></li> 
+        <li><a href="#contact">Contact</a></li>
+        <i class="fa-solid fa-square-xmark" onclick="closemenu()"></i>
+      </ul>
+
+      <i class="fa-solid fa-bars" onclick="openmenu()"></i>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header id="header" class="hero">
+    <video autoplay muted loop playsinline id="bg-video">
+      <source src="assets/videos/vd.mp4" type="video/mp4" />
+      Votre navigateur ne supporte pas la vidéo HTML5.
+    </video>
+
+    <div class="sun-glow" aria-hidden="true"></div>
+
+    <div class="container hero-inner">
+      <div class="header-text" data-aos="fade-down">
+        <h1 class="hero-title">Chaque design est une étoile dans mon univers créatif</h1>
+        <div class="title-underline"></div>
+      </div>
+    </div>
+  </header>
+
+  <!-- BIO-GRAPHIQUE -->
+ <section id="about" class="section">
+  <div class="container row">
+
+    <!-- COLONNE IMAGE -->
+    <div class="about-col-1" data-aos="fade-right">
+      <img src="assets/images/profile/PHOTO.png" alt="photo de profil" />
+    </div>
+
+    <!-- COLONNE TEXTE + ONGLET -->
+    <div class="about-col-2" data-aos="fade-left">
+
+      <!-- TEXTE BIO -->
+      <h1 class="sub-title">BIO-<span class="graphie">GRAPHIQUE</span></h1>
+
+      <div class="bio-text-container">
+        <p class="bio-paragraph">
+          Je suis <strong>Chabane SAMARI</strong>, alias <strong>SAMCHA</strong>, designer professionnel
+          et expert en conception visuelle, animé par une véritable passion pour le design graphique.
+        </p>
+
+        <p class="bio-paragraph">
+          Ayant travaillé sur de nombreux projets à l’échelle
+          <strong>nationale et internationale</strong>, j’ai affiné mon sens du détail ainsi que
+          ma capacité à comprendre les besoins uniques de chaque client.
+        </p>
+
+        <p class="bio-paragraph">
+          Ma passion réside dans la transformation de concepts en
+          <strong>marques visuellement attrayantes</strong>, capables de transmettre un message fort
+          et de laisser une impression durable.
+        </p>
+      </div>
+
+      <!-- ONGLET -->
+      <div class="tabs">
+        <button class="tab-link active" data-tab="skills">COMPÉTENCE</button>
+        <button class="tab-link" data-tab="experience">EXPÉRIENCE</button>
+      </div>
+
+      <!-- CONTENU ONGLET -->
+      <div id="skills" class="tab-pane"></div>
+
+      <div id="experience" class="tab-pane">
+        <div class="experience-container">
+
+          <div class="experience-item">
+            <div class="experience-period">2022 - Présent</div>
+            <div class="experience-title">Designer Graphique Senior</div>
+            <div class="experience-company">Innovatione Studio</div>
+            <div class="experience-description">
+              Direction des projets de design, création d'identités visuelles pour des clients
+              internationaux, supervision d'une équipe de 5 designers juniors.
+            </div>
+          </div>
+
+          <div class="experience-item">
+            <div class="experience-period">2020 - 2022</div>
+            <div class="experience-title">UI/UX Designer</div>
+            <div class="experience-company">Digital Solutions Inc.</div>
+            <div class="experience-description">
+              Conception d'interfaces utilisateur pour applications mobiles et web.
+            </div>
+          </div>
+
+          <div class="experience-item">
+            <div class="experience-period">2018 - 2020</div>
+            <div class="experience-title">Designer Graphique</div>
+            <div class="experience-company">Creative Agency</div>
+            <div class="experience-description">
+              Création de supports print et digital, conception de chartes graphiques.
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+  <!-- ŒUVRES -->
+<!-- ŒUVRES -->
+<section id="oeuvres" class="section">
+  <div class="container">
+    <h1 class="section-title" data-aos="fade-up">ŒUVRE</h1>
+
+    <div class="oeuvre-grid">
+      <div class="oeuvre-column">
+        <div class="oeuvre-item" data-gallery="design-graphique">
+          <h3>DESIGN GRAPHIQUE</h3>
+        </div>
+
+        <div class="oeuvre-item" data-gallery="branding">
+          <h3>BRANDING</h3>
+        </div>
+      </div>
+
+      <div class="oeuvre-column">
+        <div class="oeuvre-item" data-gallery="charte-graphique">
+          <h3>LOGO / CHARTE</h3>
+        </div>
+
+        <div class="oeuvre-item" data-gallery="evenements">
+          <h3>EVENEMENTS</h3>
+        </div>
+      </div>
+
+      <div class="oeuvre-column">
+        <div class="oeuvre-item" data-gallery="ui-ux">
+          <h3>UI / UX DESIGN</h3>
+        </div>
+
+        <div class="oeuvre-item" data-gallery="campagne">
+          <h3>CAMPAGNE VISUELLE</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MODALE GALERIE -->
+<div id="gallery-modal" class="gallery-modal">
+  <div class="modal-content">
+    <span class="close-modal" onclick="closeGalleryModal()">&times;</span>
+    <h2 id="modal-title"></h2>
+    <div class="gallery-grid" id="gallery-grid"></div>
+  </div>
+</div>
+
+  
+ 
+
+  <!-- COLLABORATEURS -->
+<section id="collaborateurs" class="section">
+  <div class="container">
+    <h1 class="section-title" data-aos="fade-up">COLLABORATEURS</h1>
+
+    <div class="collaborators-grid">
+      <!-- Logos injectés par JS -->
+    </div>
+  </div>
+</section>
+
+
+
+  
+    <h1 class="section-title">CONTACT</h1>
+
+    <div class="partners-grid">
+        <!-- Généré par JS -->
+    </div>
+</section>
+  <!-- CONTACT -->
+  <section id="contact" class="section">
+    <div class="container row">
+      <div class="contact-left" data-aos="fade-right">
+        <div class="contact-item">
+          <div class="contact-icon"><i class="fa-solid fa-paper-plane"></i></div>
+          <div class="contact-details"><h3>EMAIL</h3><p>samarichabane04@gmail.com</p></div>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-icon"><i class="fa-solid fa-phone"></i></div>
+          <div class="contact-details"><h3>TÉLÉPHONE</h3><p>+228 93057860</p></div>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-icon"><i class="fa-solid fa-location-dot"></i></div>
+          <div class="contact-details"><h3>LOCALISATION</h3><p>Lomé, Togo</p></div>
+        </div>
+
+        <div class="social-grid">
+          <a href="#" class="social-card"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#" class="social-card"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" class="social-card"><i class="fa-brands fa-twitter"></i></a>
+          <a href="#" class="social-card"><i class="fa-brands fa-whatsapp"></i></a>
+        </div>
+
+        <a href="documents/CV SAMARI CHABANE.pdf" download class="btn-download"><i class="fa-solid fa-download"></i> TÉLÉCHARGER CV</a>
+      </div>
+
+      <div class="contact-right" data-aos="fade-left">
+        <div class="form-container">
+          <form class="futurist-form" name="submit-to-google-sheet">
+            <input type="text" name="Nom" required placeholder="Votre nom" />
+            <input type="email" name="Email" required placeholder="Votre email" />
+            <textarea name="Message" rows="4" required placeholder="Votre message"></textarea>
+            <button type="submit" class="btn-submit"><span>ENVOYER LE MESSAGE</span> <i class="fa-solid fa-paper-plane"></i></button>
+          </form>
+          <span id="msg"></span>
+        </div>
+      </div>
+    </div>
+
+   
+  </section>
+<!-- Base -->
+<link rel="stylesheet" href="css/base.css">
+
+<!-- Sections -->
+<link rel="stylesheet" href="css/navbar.css">
+<link rel="stylesheet" href="css/hero.css">
+<link rel="stylesheet" href="css/about.css">
+<link rel="stylesheet" href="css/skills.css">
+<link rel="stylesheet" href="css/experience.css">
+<link rel="stylesheet" href="css/oeuvres.css">
+<link rel="stylesheet" href="css/gallery.css">
+<link rel="stylesheet" href="css/partners.css">
+<link rel="stylesheet" href="css/contact.css">
+<link rel="stylesheet" href="css/collaborators.css">
+
+<!-- Responsive (toujours en dernier) -->
+<link rel="stylesheet" href="css/responsive.css">
+
+  <!-- SCRIPTS - ordre important -->
+  <script src="js/menu.js"></script>
+  <script src="js/tabs.js"></script>
+  <script src="js/skills.js"></script>
+  <script src="js/galleries.js"></script>
+  <script src="js/partners.js"></script>
+  <script src="js/form.js"></script>
+  <script src="js/main.js"></script>
+
+  <!-- AOS JS (init) -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script> AOS.init({ duration: 900, once: true }); </script>
+</body>
+</html>
