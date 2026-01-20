@@ -399,6 +399,37 @@
             color: #dc3545;
         }
         
+        /* Styles pour la photo de profil */
+        .header-photo {
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .header-photo img {
+            max-width: 300px;
+            height: 300px;
+            object-fit: cover;
+            border: 5px solid #ffffff;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .header-photo img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 20px 45px rgba(0,0,0,0.3);
+        }
+        
+        .oeuvre-header {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+        }
+        
+        .oeuvre-title img {
+            max-width: 150px;
+            height: auto;
+            margin-bottom: 20px;
+        }
+        
         @media (max-width: 768px) {
             .oeuvre-title {
                 font-size: 2rem;
@@ -417,6 +448,16 @@
                 padding: 10px 20px;
                 font-size: 0.9rem;
             }
+            
+            .header-photo {
+                text-align: center;
+                margin-top: 30px;
+            }
+            
+            .header-photo img {
+                max-width: 200px;
+                height: auto;
+            }
         }
     </style>
 </head>
@@ -425,14 +466,19 @@
     <!-- Header Section -->
     <section class="oeuvre-header">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <!-- <a href="index.html" class="btn-back">
-                        <i class="fas fa-arrow-left"></i>
-                        Retour à l'accueil
-                    </a> -->
-                    <h1 class="oeuvre-title">Mes Œuvres</h1>
-                    <!-- <p class="oeuvre-subtitle">Découvrez mes créations et réalisations en design graphique, branding, UI/UX et bien plus</p> -->
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <h1 class="oeuvre-title">
+                        <img src="assets/images/logo/logo.png" alt="">
+                    </h1>
+                     <p class="disc tmp-scroll-trigger inv-title-animation-wrap tmp-fade-in animation-order-3" style="text-align: justify;"> Je suis
+                                <span>Chabane SAMARI</span>, alias SAMCHA, designer professionnel et expert en conception visuelle, animé par une véritable passion pour le design graphique. Ayant travaillé sur de nombreux projets à l'échelle nationale et internationale, j'ai affiné mon sens du détail ainsi que ma capacité à comprendre les besoins uniques de chaque client. Ma passion réside dans la transformation de concepts en marques visuellement attrayantes, capables de transmettre un message fort et de laisser une impression durable.
+                    </p>
+                </div>
+                <div class="col-lg-6">
+                    <div class="header-photo">
+                        <img src="assets/images/img/img1.jpeg" alt="Chabane SAMARI - SAMCHA DESIGNER" class="img-fluid rounded-circle">
+                    </div>
                 </div>
             </div>
         </div>
@@ -442,14 +488,15 @@
     <section class="filter-section">
         <div class="container">
             <div class="filter-buttons">
+                <h2 class="oeuvre-title">Mes Œuvres</h2>
                 <!-- <button class="filter-btn active" data-filter="all">Tous</button> -->
                 <button class="filter-btn" data-filter="branding"><a href="branding.html">Branding</a></button>
                 <button class="filter-btn" data-filter="design"><a href="design.html">Design Graphique</a></button>
-                <button class="filter-btn" data-filter="logo"><a href="">Logo/Charte</a></button>
-                <button class="filter-btn" data-filter="uiux"><a href="reseaux.html">Affiche réseaux sociaux</a></button>
-                <button class="filter-btn" data-filter="uiux"><a href="club.html">Affiche Night Club</a></button>
-                <button class="filter-btn" data-filter="events"><a href="">Couverture événementiel</a></button>
-                <button class="filter-btn" data-filter="campaign"><a href="">Campagne Visuelle</a></button>
+                <button class="filter-btn" data-filter="logo"><a href="logo.html">Logo/Charte</a></button>
+                <button class="filter-btn" data-filter="uiux"><a href="ux.html">UI/UX Design</a></button>
+                <!-- <button class="filter-btn" data-filter="uiux"><a href="club.html">Affiche Night Club</a></button> -->
+                <button class="filter-btn" data-filter="events"><a href="events.html">Couverture événementiel</a></button>
+                <!-- <button class="filter-btn" data-filter="campaign"><a href="">Campagne Visuelle</a></button> -->
                 <br>
                 <br>
                 <button class="filter-btn w-50 cv-download-btn-inline" onclick="downloadCV()" data-filter="campaign" style="background-color: #f9004d; color: #fff;">Télécharger CV</button>
