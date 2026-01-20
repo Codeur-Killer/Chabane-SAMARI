@@ -44,6 +44,38 @@
             transform: scale(1.05);
         }
         
+        /* Badge pour le nombre d'images */
+        .image-count-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+            z-index: 10;
+            transition: all 0.3s ease;
+        }
+        
+        .image-count-badge i {
+            font-size: 0.9rem;
+        }
+        
+        .image-count-badge span {
+            font-weight: bold;
+        }
+        
+        .branding-project-card:hover .image-count-badge {
+            transform: scale(1.05);
+            box-shadow: 0 6px 16px rgba(102, 126, 234, 0.4);
+        }
+        
         .branding-project-card .project-info {
             padding: 20px;
             background: rgba(255,255,255,0.95);
@@ -115,13 +147,30 @@
         
         .project-swiper {
             width: 90%;
-            max-width: 1200px;
+            max-width: 800px;
             height: 80vh;
+            overflow: hidden;
+        }
+        
+        .project-swiper .swiper-wrapper {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        
+        .project-swiper .swiper-slide {
+            flex-shrink: 0;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         
         .project-swiper .swiper-slide img {
-            width: 100%;
-            height: 100%;
+            max-width: 100%;
+            max-height: 70vh;
+            width: auto;
+            height: auto;
             object-fit: contain;
         }
         
@@ -135,6 +184,22 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            z-index: 10;
+        }
+        
+        /* Positionnement vertical pour les boutons */
+        .swiper-button-next {
+            top: auto;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) rotate(90deg);
+        }
+        
+        .swiper-button-prev {
+            top: 30px;
+            bottom: auto;
+            left: 50%;
+            transform: translateX(-50%) rotate(-90deg);
         }
         
         .swiper-button-next:hover,
@@ -144,6 +209,31 @@
         
         .swiper-pagination-bullet-active {
             background: #667eea;
+        }
+        
+        /* Pagination verticale */
+        .swiper-pagination {
+            right: 30px !important;
+            left: auto !important;
+            width: auto !important;
+            height: auto !important;
+            top: 50% !important;
+            transform: translateY(-50%) !important;
+            display: flex !important;
+            flex-direction: column !important;
+            gap: 8px !important;
+        }
+        
+        .swiper-pagination-bullet {
+            margin: 0 !important;
+            width: 12px;
+            height: 12px;
+            background: rgba(255, 255, 255, 0.5) !important;
+            opacity: 1 !important;
+        }
+        
+        .swiper-pagination-bullet-active {
+            background: #ffffff !important;
         }
         
         .project-info-modal {
@@ -665,7 +755,7 @@
                 id: 5,
                 title: "Projet 1",
                 description: "Description du projet 1",
-                thumbnail: "assets/images/img/mot1.jpeg",
+                thumbnail: "assets/images/img/cover7.jpeg",
                 images: [
                     "assets/images/img/mot1.jpeg",
                     "assets/images/img/moto2.jpeg",
@@ -678,7 +768,7 @@
                 id: 6,
                 title: "Projet 1",
                 description: "Description du projet 1",
-                thumbnail: "assets/images/img/may1.jpeg",
+                thumbnail: "assets/images/img/cover5.jpeg",
                 images: [
                     "assets/images/img/may1.jpeg",
                     "assets/images/img/may2.jpeg",
@@ -751,6 +841,10 @@
                 projectCard.className = 'col-lg-4 col-md-6';
                 projectCard.innerHTML = `
                     <div class="branding-project-card" onclick="openProject(${project.id})" style="cursor: pointer;">
+                        <div class="image-count-badge">
+                            <i class="fas fa-images"></i>
+                            <span>${project.images.length}</span>
+                        </div>
                         <img src="${project.thumbnail}" alt="${project.title}" class="project-thumbnail">
                     </div>
                 `;
@@ -843,6 +937,11 @@
             
             setTimeout(() => {
                 projectSwiper = new Swiper('.project-swiper', {
+                    direction: 'vertical',
+                    slidesPerView: 1,
+                    spaceBetween: 0,
+                    mousewheel: true,
+                    allowTouchMove: true,
                     navigation: {
                         nextEl: '.swiper-button-next',
                         prevEl: '.swiper-button-prev',
@@ -850,18 +949,22 @@
                     pagination: {
                         el: '.swiper-pagination',
                         clickable: true,
+                        type: 'bullets',
                     },
                     loop: true,
                     autoplay: {
                         delay: 3000,
                         disableOnInteraction: false,
+                        pauseOnMouseEnter: true,
                     },
                     effect: 'slide',
                     keyboard: {
                         enabled: true,
-                    }
+                    },
+                    speed: 600,
+                    grabCursor: true
                 });
-                console.log('Swiper initialisé avec', project.images.length, 'images');
+                console.log('Swiper vertical initialisé avec', project.images.length, 'images');
             }, 200);
         }
 
