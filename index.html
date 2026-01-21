@@ -491,6 +491,76 @@
             color: #25d366;
         }
         
+        /* Bonjour Section Styles */
+        .bonjour-section {
+            padding: 100px 0;
+            background: #000000;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .bonjour-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(255,255,255,0.02) 0%, rgba(255,255,255,0) 100%);
+            pointer-events: none;
+        }
+        
+        .bonjour-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .bonjour-title {
+            font-size: 5.5rem;
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 50px;
+            line-height: 1.1;
+            text-transform: uppercase;
+            letter-spacing: -2px;
+        }
+        
+        .bonjour-text {
+            font-size: 1.7rem;
+            line-height: 1.8;
+            text-align: justify;
+            color: #ffffff;
+            margin-bottom: 30px;
+            font-weight: 300;
+            max-width: 700px;
+        }
+        
+        .bonjour-text strong {
+            font-weight: 700;
+            color: #ffffff;
+        }
+        
+        .bonjour-image {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+        
+        .profile-image {
+            width: 100%;
+            max-width: 850px;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            object-fit: cover;
+        }
+        
+        .profile-image:hover {
+            transform: scale(1.02);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.6);
+        }
+        
         @media (max-width: 768px) {
             .oeuvre-title {
                 font-size: 2rem;
@@ -519,32 +589,52 @@
                 max-width: 200px;
                 height: auto;
             }
+            
+            .bonjour-title {
+                font-size: 3rem;
+                margin-bottom: 30px;
+            }
+            
+            .bonjour-text {
+                font-size: 1rem;
+                margin-bottom: 20px;
+            }
+            
+            .profile-image {
+                max-width: 300px;
+                margin-top: 30px;
+            }
         }
     </style>
 </head>
 
 <body>
-    <!-- Header Section -->
-    <section class="oeuvre-header">
+
+    <!-- Bonjour Section -->
+    <section class="bonjour-section">
         <div class="container">
-            <div class="row align-items-center">
-                <!-- Photo de profil dans le coin supérieur droit -->
-                <div style="display: flex; align-items: center; justify-content: space-between;">
-                    <div class="header-profile-top-right">
-                        <img src="assets/images/img/img1.jpeg" alt="Chabane SAMARI - SAMCHA DESIGNER" class="profile-circle-large">
-                    </div>
-                    <div>
-                        <h1 class="oeuvre-title">
-                            <img src="assets/images/logo/logo.png" alt="">
-                        </h1>
+            <div class="row align-items-center" style="display: flex; align-items: start;">
+                <div class="col-lg-7">
+                    <div class="bonjour-content">
+                        <h1 class="bonjour-title" style="margin-bottom: 50px;">Bonjour!</h1>
+                        <p class="bonjour-text" style="text-align: justify;">
+                            Je suis <strong>Chabane SAMARI</strong> Alias <strong>SAMCHA DESIGNER</strong>, un passionné de création visuelle et de design graphique. Mon expertise couvre divers domaines de la communication visuelle, du branding au design numérique, en passant par la création d'identités visuelles complètes.
+                        </p>
+                        <p class="bonjour-text" style="text-align: justify;">
+                            Avec une approche créative et technique, je transforme vos idées en réalisations visuelles percutantes qui marquent les esprits et renforcent votre présence sur le marché.
+                        </p>
+                        <p class="bonjour-text" style="text-align: justify;">
+                            Chaque projet est pour moi une opportunité de repousser les limites de la créativité tout en répondant précisément à vos besoins stratégiques.
+                        </p>
+                        <div style="text-align: left; margin-top: 40px;">
+                            <img src="assets/images/logo/logo.png" alt="" style="max-width: 150px; height: auto;">
+                        </div>
                     </div>
                 </div>
-                
-                <div class="col-lg-12">
-                    
-                     <p class="disc tmp-scroll-trigger inv-title-animation-wrap tmp-fade-in animation-order-3" style="text-align: justify;"> Je suis
-                                <span>Chabane SAMARI</span>, alias SAMCHA, designer professionnel et expert en conception visuelle, animé par une véritable passion pour le design graphique. Ayant travaillé sur de nombreux projets à l'échelle nationale et internationale, j'ai affiné mon sens du détail ainsi que ma capacité à comprendre les besoins uniques de chaque client. Ma passion réside dans la transformation de concepts en marques visuellement attrayantes, capables de transmettre un message fort et de laisser une impression durable.
-                    </p>
+                <div class="col-lg-5">
+                    <div class="bonjour-image">
+                        <img src="assets/images/img/img1.jpeg" alt="Chabane SAMARI - SAMCHA DESIGNER" class="profile-image">
+                    </div>
                 </div>
             </div>
         </div>
@@ -556,12 +646,12 @@
             <div class="filter-buttons">
                 <h2 class="oeuvre-title">Mes Œuvres</h2>
                 <!-- <button class="filter-btn active" data-filter="all">Tous</button> -->
-                <button class="filter-btn" data-filter="branding"><a href="branding.html">Branding</a></button>
-                <button class="filter-btn" data-filter="design"><a href="design.html">Design Graphique</a></button>
-                <button class="filter-btn" data-filter="logo"><a href="logo.html">Logo/Charte</a></button>
-                <button class="filter-btn" data-filter="uiux"><a href="ux.html">UI/UX Design</a></button>
+                <button class="filter-btn" data-filter="branding"><a href="branding.html" style="font-size: 1.8rem;">Branding</a></button>
+                <button class="filter-btn" data-filter="design"><a href="design.html" style="font-size: 1.8rem;">Design Graphique</a></button>
+                <button class="filter-btn" data-filter="logo"><a href="logo.html" style="font-size: 1.8rem;">Logo/Charte</a></button>
+                <button class="filter-btn" data-filter="uiux"><a href="ux.html" style="font-size: 1.8rem;">UI/UX Design</a></button>
                 <!-- <button class="filter-btn" data-filter="uiux"><a href="club.html">Affiche Night Club</a></button> -->
-                <button class="filter-btn" data-filter="events"><a href="events.html">Couverture événementiel</a></button>
+                <button class="filter-btn" data-filter="events"><a href="events.html" style="font-size: 1.8rem;">Couverture événementiel</a></button>
                 <!-- <button class="filter-btn" data-filter="campaign"><a href="">Campagne Visuelle</a></button> -->
                 <br>
                 <br>
