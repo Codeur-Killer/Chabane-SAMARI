@@ -321,34 +321,62 @@
         
         /* Styles pour l'icône PDF */
         .pdf-icon-container {
+            position: relative;
+            height: 250px;
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .pdf-icon-container .project-thumbnail {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        
+        .pdf-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(220, 53, 69, 0.9) 0%, rgba(200, 35, 51, 0.9) 100%);
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            height: 250px;
-            background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
-            border-radius: 15px;
-            transition: all 0.3s ease;
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
         
-        .pdf-icon-container i {
-            font-size: 4rem;
+        .pdf-overlay i {
+            font-size: 3rem;
             color: white;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
         
-        .pdf-icon-container span {
+        .pdf-overlay span {
             color: white;
-            font-size: 1.2rem;
+            font-size: 1rem;
             font-weight: 600;
             text-align: center;
             text-transform: uppercase;
             letter-spacing: 1px;
+            padding: 0 10px;
         }
         
         .branding-project-card:hover .pdf-icon-container {
             transform: translateY(-10px);
             box-shadow: 0 20px 40px rgba(220, 53, 69, 0.3);
+        }
+        
+        .branding-project-card:hover .pdf-overlay {
+            opacity: 1;
+        }
+        
+        .branding-project-card:hover .pdf-icon-container .project-thumbnail {
+            transform: scale(1.05);
         }
         
         /* Styles pour le modal PDF */
@@ -708,9 +736,9 @@
                 id: 12,
                 title: "Projet 1",
                 description: "Description du projet 1",
-                thumbnail: "assets/images/img/pm1.jpeg",
+                thumbnail: "assets/images/img/pm12.jpeg",
                 images: [
-                    "assets/images/img/pm1.jpeg",
+                    "assets/images/img/pm12.jpeg",
                     "assets/images/img/pm2.jpeg",
                     "assets/images/img/pm3.jpeg",
                     "assets/images/img/pm4.jpeg",
@@ -720,7 +748,7 @@
                     "assets/images/img/pm9.jpeg",
                     "assets/images/img/pm10.jpeg",
                     "assets/images/img/pm11.jpeg",
-                    "assets/images/img/pm12.jpeg",
+                    "assets/images/img/pm1.jpeg",
                     
                 ],
                 tags: ["Branding"]
@@ -732,6 +760,7 @@
                 thumbnail: "assets/images/img/ns1.jpeg",
                 images: [
                     "assets/images/img/ns1.jpeg",
+                    "assets/images/img/ns2.jpeg",
                    
                 ],
                 tags: ["Branding"]
@@ -745,7 +774,7 @@
                 id: 21,
                 title: "CHARTE GRAPHIQUE KOLIV LOGO",
                 description: "Description du document PDF 1",
-                thumbnail: "assets/documents/koliv.pdf",
+                thumbnail: "assets/images/img/cover10.jpeg",
                 pdf: "assets/documents/koliv.pdf",
                 tags: ["PDF"]
             },
@@ -753,7 +782,7 @@
                 id: 22,
                 title: "CHARTE GRAPHIQUE MY DELIVERA", 
                 description: "Description du document PDF 2",
-                thumbnail: "assets/documents/CHARTE_GRAPHIQUE_MY_DELIVERA.pdf",
+                thumbnail: "assets/images/img/cover11.jpeg",
                 pdf: "assets/documents/CHARTE_GRAPHIQUE_MY_DELIVERA.pdf",
                 tags: ["PDF"]
             },
@@ -761,7 +790,7 @@
                 id: 23,
                 title: "CHARTE GRAPHIQUE PROPERTORIES",
                 description: "Description du document PDF 3", 
-                thumbnail: "assets/documents/propertories.pdf",
+                thumbnail: "assets/images/img/cover9.jpeg",
                 pdf: "assets/documents/propertories.pdf",
                 tags: ["PDF"]
             }
@@ -802,8 +831,11 @@
                 projectCard.innerHTML = `
                     <div class="branding-project-card" onclick="openPDF('${project.pdf}')" style="cursor: pointer;">
                         <div class="pdf-icon-container">
-                            <i class="fas fa-file-pdf"></i>
-                            <span>${project.title}</span>
+                            <img src="${project.thumbnail}" alt="${project.title}" class="project-thumbnail">
+                            <div class="pdf-overlay">
+                                <i class="fas fa-file-pdf"></i>
+                                <span>${project.title}</span>
+                            </div>
                         </div>
                     </div>
                 `;
