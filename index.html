@@ -794,6 +794,219 @@
                 font-size: 28px;
             }
         }
+
+         .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    padding: 22px 24px 20px;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: background 0.3s ease, border-color 0.3s ease;
+  }
+
+  .card:first-child { border-radius: 16px 16px 4px 4px; }
+  .card:last-child  { border-radius: 4px 4px 16px 16px; }
+  .card:not(:first-child):not(:last-child) { border-radius: 4px; }
+
+  .card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 20% 50%, var(--accent-color, transparent) 0%, transparent 60%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+  }
+
+  .card:hover { border-color: rgba(255,255,255,0.12); }
+  .card:hover::before { opacity: 0.06; }
+
+  .card-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 14px;
+  }
+
+  .app-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .app-icon::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.15);
+  }
+
+  .app-icon svg {
+    width: 26px;
+    height: 26px;
+    z-index: 1;
+  }
+
+  .ps-icon { background: #001e36; }
+  .ai-icon { background: #1a0a00; }
+  .id-icon { background: #1a0010; }
+
+  .app-meta { flex: 1; }
+
+  .app-name {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 1.05rem;
+    color: var(--text-primary);
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+    margin-bottom: 2px;
+  }
+
+  .app-desc {
+    font-size: 0.72rem;
+    color: var(--text-secondary);
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+
+  .skill-level {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--text-secondary);
+    transition: color 0.3s ease;
+    min-width: 36px;
+    text-align: right;
+  }
+
+  /* Progress track */
+  .progress-track {
+    height: 3px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 99px;
+    overflow: visible;
+    position: relative;
+  }
+
+  .progress-fill {
+    height: 100%;
+    border-radius: 99px;
+    width: 0%;
+    transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+  }
+
+  /* Glow dot at end of bar */
+  .progress-fill::after {
+    content: '';
+    position: absolute;
+    right: -1px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: inherit;
+    box-shadow: 0 0 8px 2px var(--glow);
+    opacity: 0;
+    transition: opacity 0.3s ease 0.8s;
+  }
+
+  .progress-fill.loaded::after { opacity: 1; }
+
+  /* Shimmer animation */
+  @keyframes shimmer {
+    0%   { background-position: -200% center; }
+    100% { background-position: 200% center; }
+  }
+
+  .progress-fill.shimmer {
+    background-size: 200% auto;
+    animation: shimmer 2.5s linear infinite;
+  }
+
+  /* PS - blue */
+  .ps-fill {
+    background: linear-gradient(90deg, #1c7ab5 0%, #31a8ff 60%, #6ec5ff 100%);
+    --glow: rgba(49, 168, 255, 0.8);
+  }
+
+  /* AI - orange */
+  .ai-fill {
+    background: linear-gradient(90deg, #b56d00 0%, #ff9a00 60%, #ffbf55 100%);
+    --glow: rgba(255, 154, 0, 0.8);
+  }
+
+  /* ID - pink-red */
+  .id-fill {
+    background: linear-gradient(90deg, #aa1040 0%, #ff3366 60%, #ff7099 100%);
+    --glow: rgba(255, 51, 102, 0.8);
+  }
+
+  /* Hover: expand bar slightly + brighten */
+  .card:hover .progress-fill { filter: brightness(1.15); }
+
+  /* Segment ticks */
+  .ticks {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    display: flex;
+    justify-content: space-between;
+    pointer-events: none;
+  }
+
+  .tick {
+    width: 1px;
+    height: 100%;
+    background: rgba(255,255,255,0.12);
+  }
+
+  /* Stagger animation */
+  .card { opacity: 0; transform: translateY(16px); }
+  .card.visible {
+    animation: slideUp 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+
+  .card:nth-child(1) { animation-delay: 0.05s; }
+  .card:nth-child(2) { animation-delay: 0.15s; }
+  .card:nth-child(3) { animation-delay: 0.25s; }
+
+  @keyframes slideUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Click ripple */
+  .ripple {
+    position: absolute;
+    border-radius: 50%;
+    transform: scale(0);
+    background: rgba(255,255,255,0.06);
+    animation: rippleAnim 0.6s linear;
+    pointer-events: none;
+  }
+  @keyframes rippleAnim {
+    to { transform: scale(4); opacity: 0; }
+  }
+
+  /* Pulse on hover for icon */
+  .card:hover .app-icon {
+    animation: iconPulse 0.4s ease;
+  }
+  @keyframes iconPulse {
+    0%   { transform: scale(1); }
+    50%  { transform: scale(1.08); }
+    100% { transform: scale(1); }
+  }
     </style>
 </head>
 
@@ -830,53 +1043,80 @@
     </section>
 
     <!-- Skills Section -->
-    <section class="skills-section">
-        <div class="container skills-container">
-            <div class="skills-head">
-                <h2 class="skills-subtitle">COMPÉTENCES</h2>
-                <h3 class="skills-title">Mes Outils Créatifs</h3>
-                <p class="skills-description">Maîtrise des outils professionnels pour des créations exceptionnelles</p>
-            </div>
-            
-            <div class="skills-grid">
-                <div class="skill-card">
-                    <div class="skill-icon">
-                        <i class="fas fa-palette"></i>
-                    </div>
-                    <h4 class="skill-name">Photoshop</h4>
-                    <p class="skill-description">Retouche photo, création d'interfaces, montage composite</p>
-                    <div class="skill-progress">
-                        <div class="skill-progress-bar" data-progress="95"></div>
-                    </div>
-                    <div class="skill-percentage">95%</div>
-                </div>
-                
-                <div class="skill-card">
-                    <div class="skill-icon">
-                        <i class="fas fa-pen-nib"></i>
-                    </div>
-                    <h4 class="skill-name">Illustrator</h4>
-                    <p class="skill-description">Design vectoriel, logos, illustrations, typographie</p>
-                    <div class="skill-progress">
-                        <div class="skill-progress-bar" data-progress="90"></div>
-                    </div>
-                    <div class="skill-percentage">90%</div>
-                </div>
-                
-                <div class="skill-card">
-                    <div class="skill-icon">
-                        <i class="fas fa-newspaper"></i>
-                    </div>
-                    <h4 class="skill-name">InDesign</h4>
-                    <p class="skill-description">Mise en page, publications, brochures, magazines</p>
-                    <div class="skill-progress">
-                        <div class="skill-progress-bar" data-progress="85"></div>
-                    </div>
-                    <div class="skill-percentage">85%</div>
-                </div>
-            </div>
-        </div>
-    </section>
+   
+<div class="container" id="container">
+
+  <!-- Photoshop -->
+  <div class="card" data-accent="#31a8ff" data-target="82">
+    <div class="card-header">
+      <div class="app-icon ps-icon">
+        <!-- Ps letterform SVG -->
+        <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <text x="2" y="24" font-family="'DM Sans', sans-serif" font-weight="800" font-size="20" fill="#31a8ff" letter-spacing="-1">Ps</text>
+        </svg>
+      </div>
+      <div class="app-meta">
+        <div class="app-name">Photoshop</div>
+        <div class="app-desc">Retouche, photomontage</div>
+      </div>
+      <div class="skill-level" style="color:#31a8ff">82%</div>
+    </div>
+    <div class="progress-track">
+      <div class="ticks">
+        <div class="tick"></div><div class="tick"></div><div class="tick"></div>
+        <div class="tick"></div><div class="tick"></div>
+      </div>
+      <div class="progress-fill ps-fill shimmer"></div>
+    </div>
+  </div>
+
+  <!-- Illustrator -->
+  <div class="card" data-accent="#ff9a00" data-target="68">
+    <div class="card-header">
+      <div class="app-icon ai-icon">
+        <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <text x="2" y="24" font-family="'DM Sans', sans-serif" font-weight="800" font-size="20" fill="#ff9a00" letter-spacing="-1">Ai</text>
+        </svg>
+      </div>
+      <div class="app-meta">
+        <div class="app-name">Illustrator</div>
+        <div class="app-desc">Logos, vectoriels</div>
+      </div>
+      <div class="skill-level" style="color:#ff9a00">68%</div>
+    </div>
+    <div class="progress-track">
+      <div class="ticks">
+        <div class="tick"></div><div class="tick"></div><div class="tick"></div>
+        <div class="tick"></div><div class="tick"></div>
+      </div>
+      <div class="progress-fill ai-fill shimmer"></div>
+    </div>
+  </div>
+
+  <!-- InDesign -->
+  <div class="card" data-accent="#ff3366" data-target="55">
+    <div class="card-header">
+      <div class="app-icon id-icon">
+        <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <text x="2" y="24" font-family="'DM Sans', sans-serif" font-weight="800" font-size="20" fill="#ff3366" letter-spacing="-1">Id</text>
+        </svg>
+      </div>
+      <div class="app-meta">
+        <div class="app-name">InDesign</div>
+        <div class="app-desc">Mise en page</div>
+      </div>
+      <div class="skill-level" style="color:#ff3366">55%</div>
+    </div>
+    <div class="progress-track">
+      <div class="ticks">
+        <div class="tick"></div><div class="tick"></div><div class="tick"></div>
+        <div class="tick"></div><div class="tick"></div>
+      </div>
+      <div class="progress-fill id-fill shimmer"></div>
+    </div>
+  </div>
+
+</div>
 
     <!-- Filter Section -->
     <section class="filter-section">
@@ -1053,6 +1293,61 @@
                 closeDownloadModal();
             }
         });
+
+
+  const cards = document.querySelectorAll('.card');
+
+  // Stagger-in on load
+  window.addEventListener('DOMContentLoaded', () => {
+    cards.forEach((card, i) => {
+      setTimeout(() => {
+        card.classList.add('visible');
+
+        // Animate bar after card appears
+        setTimeout(() => {
+          const fill = card.querySelector('.progress-fill');
+          const target = card.dataset.target;
+          fill.style.width = target + '%';
+          fill.classList.add('loaded');
+        }, 300);
+
+      }, i * 100);
+    });
+  });
+
+  // Ripple on click
+  cards.forEach(card => {
+    card.addEventListener('click', (e) => {
+      const rect = card.getBoundingClientRect();
+      const ripple = document.createElement('span');
+      ripple.classList.add('ripple');
+      const size = Math.max(rect.width, rect.height) * 2;
+      ripple.style.cssText = `
+        width: ${size}px; height: ${size}px;
+        left: ${e.clientX - rect.left - size/2}px;
+        top: ${e.clientY - rect.top - size/2}px;
+      `;
+      card.appendChild(ripple);
+      ripple.addEventListener('animationend', () => ripple.remove());
+
+      // Re-animate bar on click
+      const fill = card.querySelector('.progress-fill');
+      const target = parseInt(card.dataset.target);
+      fill.style.width = '0%';
+      fill.classList.remove('loaded');
+      setTimeout(() => {
+        fill.style.width = target + '%';
+        fill.classList.add('loaded');
+      }, 80);
+    });
+
+    // Hover: accent glow
+    card.addEventListener('mouseenter', () => {
+      card.style.setProperty('--accent-color', card.dataset.accent);
+    });
+  });
+
+
     </script>
     
 </body>
