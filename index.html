@@ -795,7 +795,7 @@
             }
         }
 
-         .card {
+       .card {
     background: var(--card-bg);
     border: 1px solid var(--border);
     padding: 22px 24px 20px;
@@ -855,9 +855,13 @@
     z-index: 1;
   }
 
-  .ps-icon { background: #001e36; }
-  .ai-icon { background: #1a0a00; }
-  .id-icon { background: #1a0010; }
+  .ps-icon  { background: #001e36; }
+  .ai-icon  { background: #1a0a00; }
+  .id-icon  { background: #1a0010; }
+  .fig-icon { background: #1a0a2e; }
+  .cc-icon  { background: #001a15; }
+  .pr-icon  { background: #0a0020; }
+  .ae-icon  { background: #0a0020; }
 
   .app-meta { flex: 1; }
 
@@ -953,6 +957,30 @@
     --glow: rgba(255, 51, 102, 0.8);
   }
 
+  /* Figma - purple */
+  .fig-fill {
+    background: linear-gradient(90deg, #6a2dcc 0%, #a259ff 60%, #c99aff 100%);
+    --glow: rgba(162, 89, 255, 0.8);
+  }
+
+  /* CapCut - teal */
+  .cc-fill {
+    background: linear-gradient(90deg, #009972 0%, #00d4aa 60%, #55ffe0 100%);
+    --glow: rgba(0, 212, 170, 0.8);
+  }
+
+  /* Premiere Pro - purple-blue */
+  .pr-fill {
+    background: linear-gradient(90deg, #5555cc 0%, #9999ff 60%, #bbbbff 100%);
+    --glow: rgba(153, 153, 255, 0.8);
+  }
+
+  /* After Effects - violet */
+  .ae-fill {
+    background: linear-gradient(90deg, #6633aa 0%, #9966dd 60%, #bb99ff 100%);
+    --glow: rgba(153, 102, 221, 0.8);
+  }
+
   /* Hover: expand bar slightly + brighten */
   .card:hover .progress-fill { filter: brightness(1.15); }
 
@@ -980,6 +1008,10 @@
   .card:nth-child(1) { animation-delay: 0.05s; }
   .card:nth-child(2) { animation-delay: 0.15s; }
   .card:nth-child(3) { animation-delay: 0.25s; }
+  .card:nth-child(4) { animation-delay: 0.35s; }
+  .card:nth-child(5) { animation-delay: 0.45s; }
+  .card:nth-child(6) { animation-delay: 0.55s; }
+  .card:nth-child(7) { animation-delay: 0.65s; }
 
   @keyframes slideUp {
     to { opacity: 1; transform: translateY(0); }
@@ -1047,7 +1079,7 @@
 <div class="container" id="container">
 
   <!-- Photoshop -->
-  <div class="card" data-accent="#31a8ff" data-target="82">
+  <div class="card" data-accent="#31a8ff" data-target="92">
     <div class="card-header">
       <div class="app-icon ps-icon">
         <!-- Ps letterform SVG -->
@@ -1071,7 +1103,7 @@
   </div>
 
   <!-- Illustrator -->
-  <div class="card" data-accent="#ff9a00" data-target="68">
+  <div class="card" data-accent="#ff9a00" data-target="95">
     <div class="card-header">
       <div class="app-icon ai-icon">
         <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1094,7 +1126,7 @@
   </div>
 
   <!-- InDesign -->
-  <div class="card" data-accent="#ff3366" data-target="55">
+  <div class="card" data-accent="#ff3366" data-target="97">
     <div class="card-header">
       <div class="app-icon id-icon">
         <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1113,6 +1145,98 @@
         <div class="tick"></div><div class="tick"></div>
       </div>
       <div class="progress-fill id-fill shimmer"></div>
+    </div>
+  </div>
+
+  <!-- Figma -->
+  <div class="card" data-accent="#a259ff" data-target="45">
+    <div class="card-header">
+      <div class="app-icon fig-icon">
+        <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <text x="1" y="24" font-family="'DM Sans', sans-serif" font-weight="800" font-size="18" fill="#a259ff" letter-spacing="-1">Fig</text>
+        </svg>
+      </div>
+      <div class="app-meta">
+        <div class="app-name">Figma</div>
+        <div class="app-desc">UI design, prototypage</div>
+      </div>
+      <div class="skill-level" style="color:#a259ff">45%</div>
+    </div>
+    <div class="progress-track">
+      <div class="ticks">
+        <div class="tick"></div><div class="tick"></div><div class="tick"></div>
+        <div class="tick"></div><div class="tick"></div>
+      </div>
+      <div class="progress-fill fig-fill shimmer"></div>
+    </div>
+  </div>
+
+  <!-- CapCut -->
+  <div class="card" data-accent="#00d4aa" data-target="92">
+    <div class="card-header">
+      <div class="app-icon cc-icon">
+        <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <text x="1" y="24" font-family="'DM Sans', sans-serif" font-weight="800" font-size="18" fill="#00d4aa" letter-spacing="-1">Cc</text>
+        </svg>
+      </div>
+      <div class="app-meta">
+        <div class="app-name">CapCut</div>
+        <div class="app-desc">Montage vidéo mobile</div>
+      </div>
+      <div class="skill-level" style="color:#00d4aa">92%</div>
+    </div>
+    <div class="progress-track">
+      <div class="ticks">
+        <div class="tick"></div><div class="tick"></div><div class="tick"></div>
+        <div class="tick"></div><div class="tick"></div>
+      </div>
+      <div class="progress-fill cc-fill shimmer"></div>
+    </div>
+  </div>
+
+  <!-- Premiere Pro -->
+  <div class="card" data-accent="#9999ff" data-target="43">
+    <div class="card-header">
+      <div class="app-icon pr-icon">
+        <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <text x="2" y="24" font-family="'DM Sans', sans-serif" font-weight="800" font-size="20" fill="#9999ff" letter-spacing="-1">Pr</text>
+        </svg>
+      </div>
+      <div class="app-meta">
+        <div class="app-name">Premiere Pro</div>
+        <div class="app-desc">Montage vidéo pro</div>
+      </div>
+      <div class="skill-level" style="color:#9999ff">43%</div>
+    </div>
+    <div class="progress-track">
+      <div class="ticks">
+        <div class="tick"></div><div class="tick"></div><div class="tick"></div>
+        <div class="tick"></div><div class="tick"></div>
+      </div>
+      <div class="progress-fill pr-fill shimmer"></div>
+    </div>
+  </div>
+
+  <!-- After Effects -->
+  <div class="card" data-accent="#9966dd" data-target="48">
+    <div class="card-header">
+      <div class="app-icon ae-icon">
+        <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <text x="2" y="24" font-family="'DM Sans', sans-serif" font-weight="800" font-size="20" fill="#9966dd" letter-spacing="-1">Ae</text>
+        </svg>
+      </div>
+      <div class="app-meta">
+        <div class="app-name">After Effects</div>
+        <div class="app-desc">Motion design, VFX</div>
+      </div>
+      <div class="skill-level" style="color:#9966dd">48%</div>
+    </div>
+    <div class="progress-track">
+      <div class="ticks">
+        <div class="tick"></div><div class="tick"></div><div class="tick"></div>
+        <div class="tick"></div><div class="tick"></div>
+      </div>
+      <div class="progress-fill ae-fill shimmer"></div>
     </div>
   </div>
 
